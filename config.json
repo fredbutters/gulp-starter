@@ -5,11 +5,7 @@
 	},
 	"files" : {			
 		"js" : "scripts/**/*.js",
-		"app_js" : "<%= paths.js %>/app.js",
-		"app_js_min" : "<%= paths.js %>/app.min.js",
-		
-		"css" : "styles/lib/**/*.scss",
-		"css_app" : "<%= paths.css %>/app.scss",
-		"css_app_min" : "<%= paths.css %>/app.css"
+		"app_js" : "scripts/app.js",		
+		"css" : "styles/lib/**/*.scss"
 	}
 }
