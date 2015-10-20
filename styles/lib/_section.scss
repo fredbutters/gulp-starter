@@ -1,0 +1,13 @@
+.section {
+	background-color: red;
+	color: $color-black;
+	
+	.link {
+		color: green;
+		transition: color 1s ease;
+		
+		&:hover {
+			color: blue;
+		}
+	}
+}
