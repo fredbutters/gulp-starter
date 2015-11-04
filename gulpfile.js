@@ -42,9 +42,9 @@ gulp.task('browserify', function(){
 
 gulp.task('uglify', function(){
 	log("**** Uglify");
-    return gulp.src(config.files.app_min_js)
+	return gulp.src(config.files.app_min_js)
 		.pipe(uglify())
-        .pipe(gulp.dest(config.paths.js));
+		.pipe(gulp.dest(config.paths.js));
 });
 
 gulp.task('jslint', function(){
