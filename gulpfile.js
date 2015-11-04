@@ -34,7 +34,6 @@ gulp.task('cssmin', function(){
 /******* JS *******/
 gulp.task('browserify', function(){
 	log("**** Browserify");
-	log(config.paths.css);
 	return browserify(config.files.app_js).bundle()
 		.pipe(source('app.min.js'))
 		.pipe(gulp.dest(config.paths.js));
