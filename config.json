@@ -1,11 +1,13 @@
 {
 	"paths" : {
 		"css" : "styles",
-		"js" : "scripts"
+		"js" : 	"scripts"
 	},
 	"files" : {			
-		"js" : "scripts/**/*.js",
-		"app_js" : "scripts/app.js",		
-		"css" : "styles/lib/**/*.scss"
+		"js" : 			"scripts/**/*.js",
+		"app_js" : 		"scripts/app.js",	
+	    "app_min_js" : 	"scripts/app.min.js",
+		"css" : 		"styles/lib/**/*.scss",
+		"main_css" : 	"styles/main.css"
 	}
 }

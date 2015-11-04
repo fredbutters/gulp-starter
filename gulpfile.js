@@ -1,13 +1,11 @@
-//http://www.codingpedia.org/ama/how-to-use-gulp-to-generate-css-from-sass-scss/
-
-var gulp = require("gulp"),//http://gulpjs.com/
-	util = require("gulp-util"),//https://github.com/gulpjs/gulp-util
+var gulp = require("gulp"),
+	util = require("gulp-util"),
 	runSequence = require('run-sequence'),
-	sass = require("gulp-sass"),//https://www.npmjs.org/package/gulp-sass
-	autoprefixer = require('gulp-autoprefixer'),//https://www.npmjs.org/package/gulp-autoprefixer
-	minifycss = require('gulp-minify-css'),//https://www.npmjs.org/package/gulp-minify-css
+	sass = require("gulp-sass"),
+	autoprefixer = require('gulp-autoprefixer'),
+	minifycss = require('gulp-minify-css'),
 	jslint = require('gulp-jslint'),
-	source = require('vinyl-source-stream'), //https://www.npmjs.com/package/vinyl-source-stream
+	source = require('vinyl-source-stream'),
 	browserify = require('browserify'),
 	uglify = require('gulp-uglify'),
 	log = util.log,
@@ -21,14 +19,14 @@ gulp.task('sass', function(){
 	return gulp.src(config.files.css)
 		.pipe(sass({ outputStyle: 'expanded'}))
 		.pipe(autoprefixer('last 2 version'))
-		.pipe(gulp.dest('styles/'))
+		.pipe(gulp.dest(config.paths.css))
 });
 
 gulp.task('cssmin', function(){
 	log("**** Minifying CSS");
-	return gulp.src('styles/main.css')	
+	return gulp.src(config.files.main_css)	
 		.pipe(minifycss())
-		.pipe(gulp.dest('styles/'));
+		.pipe(gulp.dest(config.paths.css));
 });
 
 
@@ -44,16 +42,16 @@ gulp.task('browserify', function(){
 
 gulp.task('uglify', function(){
 	log("**** Uglify");
-	return gulp.src('scripts/app.min.js')
+	return gulp.src(config.files.app_min_js)
 		.pipe(uglify())
-		.pipe(gulp.dest('scripts'));
+		.pipe(gulp.dest(config.paths.js));
 });
 
 gulp.task('jslint', function(){
 	log("**** jslint");
-	return gulp.src('scripts/app.min.js')
+	return gulp.src(config.files.app_min_js)
 		.pipe(jslint())
-		.pipe(gulp.dest('scripts'));
+		.pipe(gulp.dest(config.paths.js));
 });
 
 gulp.task('watch', function(){
@@ -66,7 +64,7 @@ gulp.task('watch', function(){
 /******* Dev and Prd tasks *******/
 
 gulp.task('prd', function(){
-	runSequence('sass', 'cssmin', 'browserify', 'uglify');
+	runSequence('sass', 'browserify', 'cssmin', 'uglify');
 });
 gulp.task('default', function(){
 	runSequence('sass', 'browserify', 'watch');
