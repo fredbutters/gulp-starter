@@ -2,6 +2,7 @@
 Some basic gulp tasks for development and production
 
 - Pull the repo
+- install gulp globally, run `npm install -g gulp`
 - run npm install
 - For development, run the `gulp` command
   - This will start the watch tasks for SCSS and JavaScript
