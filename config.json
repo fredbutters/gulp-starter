@@ -1,13 +1,19 @@
 {
 	"paths" : {
 		"css" : "styles",
-		"js" : 	"scripts"
+        "js": "scripts",
+        "catalog": "scripts/catalog",
+        "cart":  "scripts/cart"
 	},
 	"files" : {			
 		"js" : 			"scripts/**/*.js",
 		"app_js" : 		"scripts/app.js",	
 	    "app_min_js" : 	"scripts/app.min.js",
+        "catalog":      "scripts/catalog/index.js",
+        "catalog_min":  "catalog.min.js",
+        "cart":         "scripts/cart/index.js",
+        "cart_min":     "cart.min.js",
 		"css" : 		"styles/lib/**/*.scss",
-		"main_css" : 	"styles/main.css"
+        "main_css":     "styles/main.css"
 	}
 }

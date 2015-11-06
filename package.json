@@ -13,8 +13,10 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "^11.2.0",
+    "browserify-shim": "^3.8.11",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-if": "^2.0.0",
     "gulp-jslint": "^0.2.2",
     "gulp-minify-css": "^1.2.1",
     "gulp-sass": "^2.0.4",
@@ -23,5 +25,13 @@
     "path": "^0.12.7",
     "run-sequence": "^1.1.4",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "jQuery": "global:$"
   }
 }

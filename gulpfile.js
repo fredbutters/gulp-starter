@@ -1,4 +1,5 @@
 var gulp = require("gulp"),
+    gulpif = require('gulp-if'),
 	util = require("gulp-util"),
 	runSequence = require('run-sequence'),
 	sass = require("gulp-sass"),
@@ -10,7 +11,8 @@ var gulp = require("gulp"),
 	uglify = require('gulp-uglify'),
 	log = util.log,
 	path = require('path'),
-	config = require('./config');
+	config = require('./config'),
+	app = {};
 
 /******************/
 /****** CSS *******/
@@ -53,10 +55,38 @@ gulp.task('jslint', function(){
 		.pipe(gulp.dest(config.paths.js));
 });
 
-gulp.task('watch', function(){
-	gulp.watch(config.files.js, ['browserify']);
-	gulp.watch(config.files.css, ['sass']);
-})
+gulp.task('watch', function () {
+    gulp.watch(config.files.js, ['browserify']);
+    gulp.watch(config.files.css, ['sass']);
+});
+
+
+// For page specific js files
+app.generateOutputFile = function (paths, outputFilename) {
+    //log('paths ' + paths);
+    //log('output ' + outputFilename);
+    return browserify(paths).bundle()
+		.pipe(source(outputFilename))
+		.pipe(gulp.dest(config.paths.js));
+};
+app.minifyOutputFile = function (fileName) {
+    log('minify ' + fileName);
+    return gulp.src(fileName)
+		.pipe(uglify())
+		.pipe(gulp.dest(config.paths.js));
+};
+
+
+gulp.task('page-scripts', function () {
+    app.generateOutputFile(config.files.catalog, config.files.catalog_min);
+});
+gulp.task('page-scripts-prd', function () {
+    return app.generateOutputFile(config.files.catalog, config.files.catalog_min);
+});
+gulp.task('page-min-prd', function () {
+    return app.minifyOutputFile(config.files.catalog_min);
+});
+
 
 
 /*********************************/
@@ -67,4 +97,10 @@ gulp.task('prd', function(){
 });
 gulp.task('default', function(){
 	runSequence('sass', 'browserify', 'watch');
+});
+gulp.task('page', function () {
+    runSequence('page-scripts');
+});
+gulp.task('page-prd', function () {
+    runSequence('page-scripts-prd', 'page-min-prd');
 });
