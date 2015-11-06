@@ -1,0 +1,17 @@
+﻿var paths = {
+    css: 'styles',
+    js: 'scripts',
+    catalog: this.js + '/catalog',
+    cart: this.js + '/cart'
+};
+var files = {
+    js: paths.js + '/**/*.js',
+    app_js: paths.js + '/app.js',
+    app_min_js: paths.js + '/app.min.js',
+    catalog: paths.js + '/catalog/index.js',
+    catalog_min: 'catalog.min.js',
+    cart: paths.js + '/cart/index.js',
+    cart_min: 'cart.min.js',
+    css: paths.css + '/lib/**/*.scss',
+    main_css: paths.css + '/main.css'
+};
