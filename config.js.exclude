@@ -1,4 +1,5 @@
-﻿var paths = {
+﻿
+var paths = {
     css: 'styles',
     js: 'scripts',
     catalog: this.js + '/catalog',
@@ -14,4 +15,8 @@ var files = {
     cart_min: 'cart.min.js',
     css: paths.css + '/lib/**/*.scss',
     main_css: paths.css + '/main.css'
+};
+
+var path = {
+    scripts: []
 };

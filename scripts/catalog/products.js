@@ -1,4 +1,4 @@
 ﻿(function () {
-    var count = 12;
+    var count = 12001;
     console.log('get products');
 });
